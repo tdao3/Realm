@@ -9,18 +9,25 @@ using UnityEngine.UI;
 public class Movement : MonoBehaviour {
 
     Animator anime;
-    public static int health = 100;
+    public static float health = 100;
     public Slider healthBar;
-
+    public float decreaseAmount = 1;
+    public float damage = 1;
     bool underCover = false;
     bool isWalking = false;
 
     void Awake() {
         anime = GetComponent<Animator>();
     }
+
+    void OnParticleCollision(GameObject other) {
+    	print("hit");
+        ReduceHealth();
+    }
+
     // Use this for initialization
     void Start () {
-        InvokeRepeating("ReduceHealth", 1, 1);
+       InvokeRepeating("increaseDamage", 1, 1);
 	}
 	
 	void Update () {
@@ -32,7 +39,7 @@ public class Movement : MonoBehaviour {
     }
 
     private void ReduceHealth() {
-        health = health - 20;
+        health = health - (decreaseAmount * damage);
         healthBar.value = health;
         if (health <= 0) {
             anime.SetTrigger("Death");
@@ -59,6 +66,9 @@ public class Movement : MonoBehaviour {
         anime.SetFloat("Forward", Input.GetAxis("Vertical"));
     }
 
+    private void increaseDamage() {
+        damage =+ (float)0.1;
+    }
 
 
 }
