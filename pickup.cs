@@ -16,15 +16,14 @@ public class pickup : MonoBehaviour {
         	Movement.health += increaseAmount;
 			Destroy(this.gameObject);
         }
-		if(other.gameObject.tag == "Player" && this.gameObject.tag == "key")	{
-        	Debug.Log("enter");
+        if(other.gameObject.tag == "player")	{
         	dialogBoxController.EnableDialogBox();
         }
     }
 
     void OnTriggerExit(Collider other)	{
     	inRange = false;
-		if(other.gameObject.tag == "Player")	{
+		if(other.gameObject.tag == "player")	{
         	dialogBoxController.DisableDialogBox();
         }
     }

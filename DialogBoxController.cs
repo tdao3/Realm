@@ -9,7 +9,7 @@ public class DialogBoxController : MonoBehaviour {
 	public TextAsset textFile;
 	public string[] textLines;
 	private int currentLine;
-	private int endAtLine = 3;
+	private int endAtLine = 4;
 	private bool isTyping;
 	private bool cancelTyping;
 	public float typeSpeed;
@@ -68,7 +68,7 @@ public class DialogBoxController : MonoBehaviour {
 	public void EnableDialogBox()	{
 		dialogBox.SetActive(true);
 		isActive = true;
-		currentLine = 0;
+		//currentLine = 0;
 		StartCoroutine(TextScroll(textLines[currentLine]));
 	}
 

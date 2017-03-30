@@ -7,7 +7,7 @@ public class CameraFacingBillboard : MonoBehaviour
 
     void Update()
     {
-        cam = GameObject.Find("Beta").GetComponentInChildren<Camera>();
+        //cam = GameObject.Find("Beta").GetComponentInChildren<Camera>();
         transform.LookAt(cam.transform.position);
     }
 }
