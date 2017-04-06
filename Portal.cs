@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour {
 
 	bool level1PortalStatus = false;
+	public AudioClip transport;
+	AudioSource audio;
 
 	// Use this for initialization
 	void Start () {
-		
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -20,12 +22,26 @@ public class Portal : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision collision) {
+	void playAudio()	{
+		audio.PlayOneShot(transport, 0.2f);
+	}
+
+	void loadLevel1()	{
+		SceneManager.LoadScene("Level 1");
+	}
+
+	void loadStartingArea()	{
+		SceneManager.LoadScene("Starting Area");
+	}
+
+	void OnTriggerEnter(Collider other) {
 			if(SceneManager.GetActiveScene().name == "Starting Area")	{
-				SceneManager.LoadScene("Level 1");	
+				playAudio();
+				Invoke("loadLevel1", 2f);	
 			}
 			if((level1PortalStatus) && (SceneManager.GetActiveScene().name == "Level 1"))	{
-				SceneManager.LoadScene("Starting Area");
+				playAudio();
+				Invoke("loadStartingArea", 2f);
 			}
 
 	}

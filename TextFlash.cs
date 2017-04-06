@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextFlash : MonoBehaviour {
 
-	public Text[] flashingText = new Text[3];
+	public Text[] flashingText = new Text[1];
 	private int textArrayIndex;
 	private float fadeTime = 1.5f;
 	private float waitTime = 1.5f;
@@ -14,8 +14,8 @@ public class TextFlash : MonoBehaviour {
 	void Start () {
 		textArrayIndex = 0;
 		flashingText[textArrayIndex].CrossFadeAlpha(0f, 0.01f, false);
-		flashingText[++textArrayIndex].CrossFadeAlpha(0f, 0.01f, false);
-		flashingText[++textArrayIndex].CrossFadeAlpha(0f, 0.01f, false);
+		//flashingText[++textArrayIndex].CrossFadeAlpha(0f, 0.01f, false);
+		//flashingText[++textArrayIndex].CrossFadeAlpha(0f, 0.01f, false);
 		textFade();
 		StartCoroutine(textFade());
 	}
@@ -32,14 +32,14 @@ public class TextFlash : MonoBehaviour {
 			yield return new WaitForSeconds(waitTime);
 			flashingText[textArrayIndex].CrossFadeAlpha(0f, fadeTime, false);
 			yield return new WaitForSeconds(waitTime);
-			flashingText[++textArrayIndex].CrossFadeAlpha(1f, fadeTime, false);
-			yield return new WaitForSeconds(waitTime);
-			flashingText[textArrayIndex].CrossFadeAlpha(0f, fadeTime, false);
-			yield return new WaitForSeconds(waitTime);
-			flashingText[++textArrayIndex].CrossFadeAlpha(1f, fadeTime, false);
-			yield return new WaitForSeconds(waitTime);
-			flashingText[textArrayIndex].CrossFadeAlpha(0f, fadeTime, false);
-			yield return new WaitForSeconds(waitTime);
+			//flashingText[++textArrayIndex].CrossFadeAlpha(1f, fadeTime, false);
+			//yield return new WaitForSeconds(waitTime);
+			//flashingText[textArrayIndex].CrossFadeAlpha(0f, fadeTime, false);
+			//yield return new WaitForSeconds(waitTime);
+			//flashingText[++textArrayIndex].CrossFadeAlpha(1f, fadeTime, false);
+			//yield return new WaitForSeconds(waitTime);
+			//flashingText[textArrayIndex].CrossFadeAlpha(0f, fadeTime, false);
+			//yield return new WaitForSeconds(waitTime);
 		}
 	}
 

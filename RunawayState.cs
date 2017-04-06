@@ -54,10 +54,8 @@ public class RunawayState : IAnimalState {
         animal.navMeshAgent.speed = 8;
         animal.navMeshAgent.destination = temp;
         animal.navMeshAgent.Resume();
-        Debug.Log("Run");
         if (Vector3.Distance(animal.transform.position, animal.runAwayTarget.transform.position) >= 50f) {
             ToPatrolState();
-            Debug.Log("Out of Range");
         }
 
     }

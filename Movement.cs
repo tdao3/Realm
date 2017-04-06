@@ -10,10 +10,10 @@ using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour {
 
     Animator anime;
-    public static float health = 100;
+    public static float health = 500.0f;
     public Slider healthBar;
-    public float decreaseAmount = 2;
-    public float damage = 1;
+    public float decreaseAmount = 0.01f;
+    public float damage = 0.02f;
     bool underCover = false;
     bool isWalking = false;
     public static bool hasKey = false;
@@ -25,7 +25,8 @@ public class Movement : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other)	{
-    	if(other.gameObject.CompareTag("key"))	{
+    	if((other.tag == "health"))	{
+            IncreaseHealth(25f);
             //hasKey = true;
             //instruction.gameObject.SetActive(true);
 
@@ -42,18 +43,17 @@ public class Movement : MonoBehaviour {
 
     void OnParticleCollision(GameObject other) {
         ReduceHealth();
-        //Debug.Log("Hit");
     }
 
     // Use this for initialization
     void Start () {
-    	health = 100;
+    	health = 500;
     	damage = 1;
 		decreaseAmount = 2;
     	hasKey = false;
 		underCover = false;
     	isWalking = false;
-       	InvokeRepeating("increaseDamage", 1, 1);
+       	InvokeRepeating("increaseDamage", 1, 3);
         //instruction.gameObject.SetActive(false);
 
     }
@@ -73,6 +73,12 @@ public class Movement : MonoBehaviour {
             anime.SetTrigger("Death");
             Invoke("loadLevel1", 3); 
         }
+    }
+
+    public void IncreaseHealth(float value) {
+        health = health + value;
+        healthBar.value = health ;
+
     }
 
     private void loadLevel1()	{
@@ -100,7 +106,7 @@ public class Movement : MonoBehaviour {
     }
 
     private void increaseDamage() {
-        damage =+ (float)0.2;
+        damage =+ 0.2f;
     }
 
 

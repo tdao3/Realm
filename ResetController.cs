@@ -49,10 +49,11 @@ public class ResetController : MonoBehaviour {
     		ShowDialog = true;
     	}
 
-        if (Input.GetButtonUp("Exit/Restart"))
-        {
-            ShowDialog = !ShowDialog;
-            Cursor.visible = !Cursor.visible;
+        if (Input.GetButtonUp("Exit/Restart"))	{
+	        {
+	            ShowDialog = !ShowDialog;
+	            Cursor.visible = !Cursor.visible;
+	        }
         }
 	}
 }
