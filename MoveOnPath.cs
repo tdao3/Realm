@@ -10,6 +10,7 @@ public class MoveOnPath : MonoBehaviour {
     private float reachDistance = 1.0f;
     public float rotationSpeed = 5.0f;
     public string pathName;
+    public bool playerInRange = false;
 
     Vector3 last_position;
     Vector3 current_position;
@@ -20,21 +21,34 @@ public class MoveOnPath : MonoBehaviour {
         //PathToFollow = GameObject.Find(pathName).GetComponent<EditorPathScript>();
         last_position = transform.position;	
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        float distance = Vector3.Distance(PathToFollow.path_objs[CurrentWayPointID].position, transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, PathToFollow.path_objs[CurrentWayPointID].position, Time.deltaTime * speed);
 
-        if(distance <= reachDistance)
-        {
-            CurrentWayPointID++;
+    // Update is called once per frame
+    void OnTriggerEnter(Collider other) {
+        if(other.tag == "Player") {
+            playerInRange = true;
         }
 
-        if(CurrentWayPointID >= PathToFollow.path_objs.Count)
-        {
-            CurrentWayPointID = 0;
+    }
+    private void OnTriggerExit(Collider other) {
+        if (other.tag == "Player") {
+            playerInRange = false;
         }
-	}
+    }
+
+    private void Update() {
+        if (playerInRange == true) {
+
+            float distance = Vector3.Distance(PathToFollow.path_objs[CurrentWayPointID].position, transform.position);
+
+            transform.position = Vector3.MoveTowards(transform.position, PathToFollow.path_objs[CurrentWayPointID].position, Time.deltaTime * speed);
+
+            if (distance <= reachDistance) {
+                CurrentWayPointID++;
+            }
+
+            if (CurrentWayPointID >= PathToFollow.path_objs.Count) {
+                CurrentWayPointID = 0;
+            }
+        }
+    }
 }

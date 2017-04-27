@@ -27,7 +27,7 @@ public class SoundtrackController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(SceneManager.GetActiveScene().name == "Starting Area")	{
+		if(SceneManager.GetActiveScene().name == "Starting Area" || SceneManager.GetActiveScene().name == "Level 1" || SceneManager.GetActiveScene().name == "Level 2" || OSTController.instance != null)	{
 			Destroy(this.gameObject);
 		}
 	}
